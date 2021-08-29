@@ -1,0 +1,18 @@
+"""
+Payments Admin
+"""
+
+# Django
+from django.contrib import admin
+
+#Models
+from .models import Payment
+
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ['uuid', 'amount', 'created_by']
+
+
+
+

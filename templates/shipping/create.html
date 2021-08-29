@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% block head_content %}
+    <title>Shipping</title>
+{% endblock %}
+{% block container %}
+    <div class="row">
+        <div class="col-lg-2 ml-auto">
+            <a href="{% url 'shipping:list' %}" class="btn btn-secondary btn-block">go to list Shipping</a>
+        </div>
+        <div class="col-lg-12">
+            <h3 class="mb-5">Shipping</h3>
+        </div>
+        {% if exists_orders_to_send %}
+            <div class="col-lg-12">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="col-lg-10">
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field|add_class:'form-control' }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-block btn-primary">Send</button>
+                        </div>
+                    </form>
+        </div>
+        {% else %}
+            <p>You haven't orders to send.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}

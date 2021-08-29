@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load widget_tweaks %}
+{% block head_content %}
+    <title>Payments</title>
+{% endblock %}
+{% block container %}
+    <div class="row">
+        <div class="col-lg-2 ml-auto">
+            <a href="{% url 'products:list' %}" class="btn btn-secondary btn-block">go to list products</a>
+        </div>
+        <div class="col-lg-12">
+            <h3 class="mb-5">Payments</h3>
+        </div>
+        {% if exists_orders_to_pay %}
+            <div class="row w-100">
+                <div class="col-lg-12">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="col-lg-10">
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {{ field|add_class:'form-control' }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-block btn-primary">Pay</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% else %}
+            <p>You haven't orders to pay.</p>
+        {% endif %}
+
+    </div>
+{% endblock %}

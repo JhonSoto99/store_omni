@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head_content %}
+    <title>Product Delete</title>
+{% endblock %}
+{% block container %}
+    <div class="row justify-content-center">
+        <h3>Product Delete</h3>
+        <div class="col-lg-12">
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-info {% if message.tags %}{{ message.tags }}{% endif %}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-12">
+            <form method="post">{% csrf_token %}
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+                <button type="submit" class="btn btn-block btn-danger w-25">Delete</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
