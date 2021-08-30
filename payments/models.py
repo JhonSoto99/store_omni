@@ -4,11 +4,9 @@ import uuid
 
 # Django
 from django.db import models
-from django.db.models import Sum
 
 # Models
 from accounts.models import AuditBaseAbstract
-from products.models import Product
 
 # Signals
 from django.db.models.signals import post_save, pre_save

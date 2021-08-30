@@ -3,17 +3,12 @@ Products test model.
 """
 
 # Django
-from django.db.utils import IntegrityError
 from django.test import TestCase, RequestFactory
-from rest_framework.test import force_authenticate
 
 # Model
 from .models import Product
 from accounts.models import User
 from orders.models import Order
-
-# Views
-from .views import ProductCreateView
 
 
 class ProductTestCase(TestCase):

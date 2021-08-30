@@ -3,7 +3,6 @@ Orders test model.
 """
 
 # Django
-from django.db.utils import IntegrityError
 from django.test import TestCase
 
 # Model

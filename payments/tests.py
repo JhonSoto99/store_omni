@@ -3,14 +3,12 @@ Payments test model.
 """
 
 # Django
-from django.db.utils import IntegrityError
 from django.test import TestCase
 
 # Model
 from .models import Payment
-from orders.models import Order, OrderProducts
+from orders.models import Order
 from accounts.models import User
-from products.models import Product
 
 
 class PaymentTestCase(TestCase):

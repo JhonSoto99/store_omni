@@ -3,12 +3,11 @@ Products Api Views
 """
 
 # Django Restframework
-from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions
 from rest_framework.generics import ListAPIView
 
 # Models
-from orders.models import Order, OrderProducts
+from orders.models import Order
 
 # Serializers
 from .serializer import OrderSerializer

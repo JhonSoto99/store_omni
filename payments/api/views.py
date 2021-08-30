@@ -3,7 +3,6 @@ Products Api Views
 """
 
 # Django Restframework
-from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -15,11 +14,9 @@ from orders.models import Order
 # Serializers
 from .serializer import PaymentSerializer
 
-# Pagination
-from store_omni.pagination import StandardResultsSetPagination
+
 
 #Django
-from django.db import IntegrityError
 from django.db.models import Sum
 
 
