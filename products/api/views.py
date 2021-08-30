@@ -33,6 +33,10 @@ class ProductViewSet(ModelViewSet):
     def list(self, request, version):
         queryset = self.queryset
         if not self.request.user.is_superuser or not self.request.user.is_staff:
+            """
+            Filter product by enabled=True if is an
+            user no privileges admin 
+            """
             queryset = queryset.filter(
                 enabled=True
             )
@@ -55,6 +59,11 @@ class ProductAddOrderApiView(APIView):
         ).first()
         product = Product.objects.get(uuid=product_id)
 
+        """
+        It is validated if the user has an order created
+        to associate the new product,
+        otherwise a new order is created by default
+        """
         if user_order:
             try:
                 OrderProducts.objects.create(

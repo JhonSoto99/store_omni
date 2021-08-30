@@ -53,6 +53,10 @@ class ProductListView(SuccessMessageMixin, LoginRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super(ProductListView, self).get_queryset()
         if not self.request.user.is_superuser or not self.request.user.is_staff:
+            """
+            Filter product by enabled=True if is an
+            user no privileges admin 
+            """
             queryset = queryset.filter(
                 enabled=True
             )
@@ -87,6 +91,10 @@ class ProductOrderCreateView(LoginRequiredMixin, CreateView):
             ).exists()
 
             if not order_product_taken:
+                """
+                It is validated that this product is not associated
+                 with this order to be able to associate it.
+                """
                 order_products = OrderProducts(product=product, **form.cleaned_data)
                 order_products.save()
 

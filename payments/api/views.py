@@ -33,6 +33,10 @@ class CreatePaymentApiView(APIView):
         orders = request.data.getlist('orders')
 
         if orders:
+            """
+            the total value of the orders is obtained 
+            to add them to the total value of the payment.
+            """
             amount = Order.objects.filter(uuid__in=orders).aggregate(Sum('amount'))
             payment_created = Payment.objects.create(
                 created_by=request.user,

@@ -35,8 +35,12 @@ class PayOrdersCreateView(LoginRequiredMixin, CreateView):
         """
         if form.is_valid():
             orders = form.cleaned_data.get("orders")
-            amount = orders.aggregate(Sum('amount'))
 
+            """
+            the total value of the orders is obtained 
+            to add them to the total value of the payment.
+            """
+            amount = orders.aggregate(Sum('amount'))
             payment_created = Payment.objects.create(
                 created_by=self.request.user,
                 amount=amount['amount__sum']
