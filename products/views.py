@@ -22,7 +22,7 @@ from .forms import ProductForm
 from orders.forms import OrderProductForm
 
 
-class ProductCreateView(SuccessMessageMixin, CreateView):
+class ProductCreateView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/create_update.html'
@@ -30,7 +30,7 @@ class ProductCreateView(SuccessMessageMixin, CreateView):
     success_message = 'Successfully created product.'
 
 
-class ProductsUpdateView(SuccessMessageMixin, UpdateView):
+class ProductsUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'products/create_update.html'
@@ -44,7 +44,7 @@ class ProductsDeleteView(SuccessMessageMixin, DeleteView):
     success_message = 'Successfully deleted product.'
 
 
-class ProductListView(LoginRequiredMixin, ListView):
+class ProductListView(SuccessMessageMixin, LoginRequiredMixin, ListView):
     model = Product
     queryset = model.objects.all()
     template_name = 'products/list.html'
